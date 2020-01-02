@@ -2,6 +2,7 @@ import _ from 'underscore';
 import { Meteor } from 'meteor/meteor';
 import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { RateLimiter } from 'meteor/rate-limit';
+
 import { settings } from '../../../settings';
 import { metrics } from '../../../metrics';
 
@@ -143,7 +144,7 @@ const reconfigureLimit = Meteor.bindEnvironment((name, rules, factor = 1) => {
 		rules,
 		settings.get(`DDP_Rate_Limit_${ name }_Requests_Allowed`) * factor,
 		settings.get(`DDP_Rate_Limit_${ name }_Interval_Time`) * factor,
-		callback(`limit by ${ messages[name] }`, name)
+		callback(`limit by ${ messages[name] }`, name),
 	);
 });
 
